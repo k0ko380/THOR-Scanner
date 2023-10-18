@@ -1,4 +1,6 @@
-payload stager: A stager is a small program, usually hand-optimized assembly, that downloads a payload stage, injects it into memory, and passes execution to it. This process is known as staging.
+payload stager: A stager is a small program, usually hand-optimized assembly, that downloads a payload stage, injects it into memory, and passes execution to it.
+This process is known as staging. A payload stager, in the context of computer security and hacking, refers to a small piece of code or script used to deliver and execute a more substantial malicious payload on a target system.
+It's often a two-stage or multi-stage approach to malware delivery and execution. 
 
 Ex)
 
