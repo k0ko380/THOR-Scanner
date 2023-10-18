@@ -1,3 +1,5 @@
 Which of the following lines do you have to add to detect files named lsass.DMP located in the C:\PerfLogs folder explicitly?
 
+# Dump file in PerfLogs folder
+
 a) C:\\PerfLogs\\lsass\.DMP;120
