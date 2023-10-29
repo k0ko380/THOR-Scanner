@@ -1,0 +1,12 @@
+rule malicious_api_call {
+    meta:
+        description = "Detects specific API calls made by malicious code"
+    strings:
+        $api_call1 = "CreateRemoteThread" wide
+        $api_call2 = "WriteProcessMemory" wide
+        $api_call3 = "VirtualAllocEx" wide
+        $api_call4 = "GetProcAddress" wide
+        // GetProcAddress wird in Bezug auf die Erkennung von bösartigem Code hinzugefügt, da es dazu verwendet wird, Funktionen aus anderen DLL-Dateien dynamisch zu laden und aufzurufen. //
+    condition:
+        2 of ($api_call*) or 1 of ($api_call*)
+}
