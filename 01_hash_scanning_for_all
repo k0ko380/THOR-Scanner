@@ -1,9 +1,0 @@
-rule scan_for_md5_hashes {
-    strings:
-        $md5_hash_1 = "4a162f4587b5bb1161ecdf6f03a332a7"
-        $md5_hash_2 = "c29f728db90d9a1ac842288776e6d13e"
-        $md5_hash_3 = "4b6f0215cde9329407695f269cc9903e"
-        $md5_hash_4 = "f892d9371b459567585af9b11c88190c"
-    condition:
-        any of them
-}
