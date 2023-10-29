@@ -1,0 +1,14 @@
+// code injection scanning
+
+rule code_injection {  // defining the rule
+    
+    meta:
+    	description = "Code Injection Scanning" // defining the rule
+
+    strings:
+        $api1 = "CreateRemoteThread" wide ascii  // typical Parameter on a malware with Code Injection #1 
+        $api2 = "WriteProcessMemory" wide ascii  // typical Parameter on a malware with Code Injection #2
+        $api3 = "VirtualAllocEx" wide ascii      // typical Parameter on a malware with Code Injection #3
+    condition:
+        all of them // applying the above written strings for all the scanned files
+}
