@@ -1,0 +1,10 @@
+rule detect_spear_phishing_office_files {
+  meta:
+    description = "Detects suspicious Microsoft Office files commonly used in spear phishing attacks"
+  strings:
+    $binary_office_signature = { D0 CF 11 E0 A1 B1 1A E1 00 } // Hex signature for binary Office files (Old Version)
+    $xml_office_signature = { 50 4B 03 04 } // Hex signature for XML-based Office files (NEW Version)
+    $vba_macro_indicator = "vbaProject.bin" // Indicator of VBA macros in Office files
+  condition:
+    ($binary_office_signature or $xml_office_signature) and $vba_macro_indicator
+}
