@@ -1,0 +1,16 @@
+//Visual Basic on Excel//
+
+Sub HideLink()
+    Dim ws As Worksheet
+    Dim cell As Range
+
+    ' Specify the worksheet where you want to hide the link
+    Set ws = ThisWorkbook.Sheets(1) ' Change the sheet index as needed
+
+    ' Specify the cell with the hyperlink
+    Set cell = ws.Cells(1, 1) ' A1 cell
+
+    ' Hide the link by setting the font color to match the background color
+    cell.Hyperlinks(1).Range.Font.Color = RGB(255, 255, 255) ' Change RGB color as needed
+End Sub
+
