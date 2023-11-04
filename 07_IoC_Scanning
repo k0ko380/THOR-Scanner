@@ -1,0 +1,13 @@
+rule detect_ioc {
+  meta:
+    description = "Detects IoCs associated with known threats"
+  strings:
+    $malicious_hash_MD5 = "c29f728db90d9a1ac842288776e6d13e" nocase
+    $malicious_hash_SHA1 = "f2453cb14da315eb654ca0026516111c600509ac" nocase
+    $malicious_hash_SHA_256 = "9856a3f642fe8b44230b453100df51a456c7f4f27341fc02b2039283cb8cc946" nocase
+    $malicious_ip = "193.233.255.73" nocase
+    $malicious_domain = "http://193.233.255.73/loghub/master" nocase
+    $ioc_keywords = /Wextract|WEXTRACT\.EXE\.MUI|clip64\.dll/ nocase
+  condition:
+    any of them
+}
