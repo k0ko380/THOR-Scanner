@@ -1,0 +1,17 @@
+rule suspicious_api_calls {
+    meta:
+        description = "Detects suspicious API calls often used in malicious code"
+    strings:
+        $api_call1 = "CreateRemoteThread" wide // Ein Thread in einem entfernten Prozess erstellen und neuen Code einspritzen. Dies wird verwendet, um bösartigen Code in anderen Prozessen auszuführen. (Mögliche bösartige Aktivität) //
+        $api_call2 = "WriteProcessMemory" wide // Daten in den virtuellen Speicher eines anderen Prozesses schreiben, hauptsächlich im Zusammenhang mit Code-Injektion und Modifikation von ausführbaren Dateien. (Mögliche bösartige Aktivität) //
+        $api_call3 = "VirtualAllocEx" wide // Wird verwendet, um den virtuellen Speicher in einem entfernten Prozess zuzuweisen, hauptsächlich im Zusammenhang mit Code-Injektion. (Mögliche bösartige Aktivität) //
+        $api_call4 = "GetProcAddress" wide // Dynamisches Suchen und Aufrufen von Funktionen aus anderen DLLs, hauptsächlich im Zusammenhang mit der Verschleierung von Codeausführung. (Mögliche bösartige Aktivität) //
+        $api_call5 = "LoadLibraryA" wide // A Wird verwendet, um andere DLLs in den aktuellen Prozess zu laden, hauptsächlich im Zusammenhang mit der Bereitstellung zusätzlicher Funktionen oder der Injektion bösartiger DLLs. (Mögliche bösartige Aktivität) //
+        $api_call6 = "LoadLibraryW" wide // W Wird verwendet, um andere DLLs in den aktuellen Prozess zu laden, hauptsächlich im Zusammenhang mit der Bereitstellung zusätzlicher Funktionen oder der Injektion bösartiger DLLs. (Mögliche bösartige Aktivität) //
+        $api_call7 = "ShellExecuteA" wide // A Wird verwendet, um externe Programme oder Dateien auszuführen. Bösartiger Code kann dies nutzen, um andere ausführbare Dateien auszuführen oder das System zu beeinflussen. (Mögliche bösartige Aktivität) //
+        $api_call8 = "ShellExecuteW" wide // W Wird verwendet, um externe Programme oder Dateien auszuführen. Bösartiger Code kann dies nutzen, um andere ausführbare Dateien auszuführen oder das System zu beeinflussen. (Mögliche bösartige Aktivität) //
+        $api_call9 = "HttpSendRequest" wide // Wird verwendet, um HTTP-Anfragen an einen Webserver zu senden. Bösartiger Code kann dies nutzen, um mit einem Remote-Server zu kommunizieren oder zusätzliche Payloads herunterzuladen. (Mögliche bösartige Aktivität) //
+        $api_call10 = "CreateThread" wide // Wird verwendet, um einen neuen Thread zu erstellen und auszuführen. Bösartiger Code kann dies nutzen, um mit mehreren Threads zu arbeiten oder versteckte Funktionen auszuführen. (Mögliche bösartige Aktivität) //
+    condition:
+        3 of ($api_call*) or 2 of ($api_call*) or 1 of ($api_call*)
+}
